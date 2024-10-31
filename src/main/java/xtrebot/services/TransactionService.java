@@ -63,4 +63,8 @@ public class TransactionService {
     public List<Transaction> getTransactionsByType(String type) {
         return transactionRepository.findByType(type);
     }
+
+    public List<Transaction> getTransactionByEmail(String email) {
+        return transactionRepository.findByEmail(email);
+    }
 }

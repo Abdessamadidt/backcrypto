@@ -10,4 +10,6 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
 
     // Méthode pour récupérer toutes les transactions avec un type égal à "w"
     List<Transaction> findByType(String type);
+
+    List<Transaction> findByEmail(String email);
 }

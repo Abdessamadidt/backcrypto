@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import xtrebot.entities.Coin;
+import xtrebot.repositories.CoinRepository;
 import xtrebot.services.CoinService;
 
 import java.io.IOException;
@@ -18,7 +19,8 @@ public class CoinController {
 
     @Autowired
     private CoinService coinService;
-
+    @Autowired
+    private CoinRepository coinRepository;
 
 
     @PostMapping
@@ -44,5 +46,10 @@ public class CoinController {
     @GetMapping("/{id}")
     public Coin getCoinById(@PathVariable Long id) {
         return coinService.getCoinById(id).orElseThrow(() -> new RuntimeException("Coin not found"));
+    }
+
+    @DeleteMapping("delete/{id}")
+    public void deleteCoinById(@PathVariable Long id) {
+        coinRepository.deleteById(id);
     }
 }

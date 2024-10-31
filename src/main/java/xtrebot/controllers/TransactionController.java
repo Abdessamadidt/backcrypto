@@ -56,4 +56,12 @@ public class TransactionController {
         Transaction transaction = transactionService.updateTransactionStatus(transactionId, status);
         return ResponseEntity.ok(transaction);
     }
+
+    @GetMapping("/{email}")
+    public ResponseEntity<List<Transaction>> getTransactionByEmail(@PathVariable String email) {
+        List<Transaction> transactions = transactionService.getTransactionByEmail(email);
+        return ResponseEntity.ok(transactions);
+
+
+    }
 }
