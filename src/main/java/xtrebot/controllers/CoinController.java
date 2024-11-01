@@ -15,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/coins")
+
 public class CoinController {
 
     @Autowired
