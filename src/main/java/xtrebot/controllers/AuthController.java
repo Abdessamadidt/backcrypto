@@ -59,20 +59,26 @@ public class AuthController {
     // Endpoint d'inscription
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody RegisterRequest registerRequest) {
-        // Vérifie si l'utilisateur existe déjà
+        // Check if the username already exists
         if (userService.userExists(registerRequest.getUsername())) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of("error", "Username already taken"));
         }
 
-        // Crée un nouvel utilisateur avec les données fournies
+        // Check if the email already exists
+        if (userService.emailExists(registerRequest.getEmail())) { // Ensure you have this method in your UserService
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of("error", "Email already exists"));
+        }
+
+        // Create a new user with the provided data
         User newUser = new User();
         newUser.setUsername(registerRequest.getEmail());
-        newUser.setPassword(registerRequest.getPassword()); // N'oubliez pas de hasher le mot de passe
+        newUser.setPassword(registerRequest.getPassword()); // Don't forget to hash the password
         newUser.setEmail(registerRequest.getEmail());
         newUser.setPrenom(registerRequest.getPrenom());
         newUser.setNom(registerRequest.getNom());
 
-        userService.saveUser(newUser); // Sauvegarde l'utilisateur en base de données
+        userService.saveUser(newUser); // Save the user to the database
         return ResponseEntity.status(HttpStatus.CREATED).body(Map.of("message", "User registered successfully"));
     }
+
 }

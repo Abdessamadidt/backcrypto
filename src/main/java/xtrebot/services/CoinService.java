@@ -31,6 +31,8 @@ public class CoinService {
             coin.setPrice(updatedCoin.getPrice());
             coin.setPricechange(updatedCoin.getPricechange());
             coin.setImg(updatedCoin.getImg());
+            coin.setAddress(updatedCoin.getAddress());
+            coin.setNetwork(updatedCoin.getNetwork());
             return coinRepository.save(coin);
         } else {
             throw new RuntimeException("Coin not found with id " + id);

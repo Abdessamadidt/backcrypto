@@ -19,6 +19,8 @@ public class Coin {
     private double price;
     private double pricechange;
     private String img; // pour stocker le chemin de l'image ou l'URL de l'image
+    private String address;
+    private String network;
 
     // Getters et Setters
 }

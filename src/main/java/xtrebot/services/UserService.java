@@ -49,11 +49,15 @@ public class UserService {
         if (existingUser.isPresent()) {
             User user = existingUser.get();
             user.setBtcSolde(updatedUser.getBtcSolde());
-            user.setUsdtSole(updatedUser.getUsdtSole());
+            user.setUsdtSolde(updatedUser.getUsdtSolde());
             return userRepository.save(user);
         } else {
             throw new RuntimeException("Coin not found with id " + id);
         }
+    }
+
+    public boolean emailExists(String email) {
+        return userRepository.findByEmail(email) != null; // Check for null
     }
 }
 

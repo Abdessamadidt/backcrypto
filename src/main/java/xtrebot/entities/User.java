@@ -16,13 +16,15 @@ public class User {
 
     private String username;
     private String password;
+
+    @Column(unique = true) // Making the email unique
     private String email;
+
     private String prenom;
     private String nom;
     private RolesEnum role; // Champ de rôle ajouté
-    private double usdtSole;
+    private double usdtSolde;
     private double btcSolde;
-
 
     // Getters and Setters
     // + constructors, if needed
